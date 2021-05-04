@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #system{
+            position: absolute;
+width: 100%;
+  bottom: 10%;
+        }
+        *{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .button{
+            background: linear-gradient(145deg, #cacaca, #f0f0f0);
+box-shadow:  3px 3px 7px #5a5a5a,
+             -3px -3px 7px #ffffff;
+            border: solid black 0.0px;
+            border-radius: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            width: 50px;
+            height: 50px;
+        }
+        
+        #congratulation , #not-congratulation ,#repeat , #nothing{
+            font-size: 0px;
+            opacity: 0%;
+            transition: 0.4s;
+            display: block;
+        }
+        #repeat{
+            padding: 10px;
+            background-color: maroon;
+            color: white;
+            border: solid black 0.1;
+            border-radius: 5px ;
+        }
+        html, body {
+  width: 100%;
+  height:100%;
+}
+        body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <div align="center">
+
+
+
+    <h2 id="you">You</h2>
+    <button id="rock" class="button" onclick="chosey()">حجرة</button>
+    <button id="paper" class="button" onclick="chosex()">ورقة</button>
+    <button id="scissors" class="button" onclick="chose()">مقص</button>
+<br>
+<br>
+
+<h1 id="congratulation">!!! تهانينا</h1>
+<h1 id="not-congratulation">!!! مع الاسف</h1>
+<h1 id="nothing">تعادل</h1>
+<button  id="repeat" onclick="repeat()">اعادة</button>
+
+<br>
+<br>
+
+
+<div id="system">
+<h2 id="you">System</h2>
+    <button id="system-btn" class="button">...</button>
+    <br>
+    <br>
+    <br>
+    <span id="number-point">0</span><span id="point">point</span>
+</div>
+
+</div>
+<script>
+    function repeat(){
+        
+        
+        document.getElementById("nothing").style.opacity = "0%";
+        document.getElementById("nothing").style.fontSize = "0px";
+
+
+        document.getElementById("congratulation").style.opacity = "0%";
+        document.getElementById("congratulation").style.fontSize = "0px";
+
+        document.getElementById("not-congratulation").style.opacity = "0%";
+        document.getElementById("not-congratulation").style.fontSize = "0px";
+
+        document.getElementById("repeat").style.opacity = "0%";
+        document.getElementById("repeat").style.fontSize = "0px";
+
+
+        document.getElementById("paper").disabled = false;
+                document.getElementById("scissors").disabled = false;
+                document.getElementById("rock").disabled = false;
+    }
+    function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+    var list = ["حجرة" , "ورقة" , "مقص"];
+    var randomList = list[Math.floor(Math.random() * list.length)];
+    function chose(){
+        document.getElementById("congratulation").style.opacity = "100%";
+        var randomList = list[Math.floor(Math.random() * list.length)];
+        document.getElementById("system-btn").innerHTML = randomList;
+            if(document.getElementById("system-btn").innerHTML == "ورقة"){
+                document.getElementById("paper").disabled = true;
+                document.getElementById("scissors").disabled = true;
+                document.getElementById("rock").disabled = true;
+                document.getElementById("number-point").innerHTML = Number(document.getElementById("number-point").innerHTML) + 10;
+                document.getElementById("congratulation").style.opacity = "100%";
+                document.getElementById("congratulation").style.fontSize = "50px";
+                //repeat button
+                
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "green";
+            }
+            else if(document.getElementById("system-btn").innerHTML == "مقص"){
+                document.getElementById("nothing").style.opacity = "100%";
+                document.getElementById("nothing").style.fontSize = "20px";
+                //repeat button
+                
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "black";
+            }
+            else{
+                document.getElementById("paper").disabled = true;
+                document.getElementById("scissors").disabled = true;
+                document.getElementById("rock").disabled = true;
+                if(document.getElementById("number-point").innerHTML > 0){
+                    document.getElementById("number-point").innerHTML = Number(document.getElementById("number-point").innerHTML) - 10;
+                }
+                else{
+
+                }    
+                document.getElementById("not-congratulation").style.opacity = "100%";
+                document.getElementById("not-congratulation").style.fontSize = "50px";
+                //repeat button
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "red";
+            }
+    }
+    
+
+    function chosex(){
+        document.getElementById("congratulation").style.opacity = "100%";
+        var randomList = list[Math.floor(Math.random() * list.length)];
+        document.getElementById("system-btn").innerHTML = randomList;
+            if(document.getElementById("system-btn").innerHTML == "حجرة"){
+                document.getElementById("paper").disabled = true;
+                document.getElementById("scissors").disabled = true;
+                document.getElementById("rock").disabled = true;
+                document.getElementById("number-point").innerHTML = Number(document.getElementById("number-point").innerHTML) + 10;
+                document.getElementById("congratulation").style.opacity = "100%";
+                document.getElementById("congratulation").style.fontSize = "50px";
+                //repeat button
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "green";
+            }
+            else if(document.getElementById("system-btn").innerHTML == "ورقة"){
+                document.getElementById("nothing").style.opacity = "100%";
+                document.getElementById("nothing").style.fontSize = "20px";
+                //repeat button
+                
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "black";
+            }
+            else{
+                document.getElementById("paper").disabled = true;
+                document.getElementById("scissors").disabled = true;
+                document.getElementById("rock").disabled = true;
+if(document.getElementById("number-point").innerHTML > 0){
+                    document.getElementById("number-point").innerHTML = Number(document.getElementById("number-point").innerHTML) - 10;
+                }
+                else{
+                    
+                }    
+                document.getElementById("not-congratulation").style.opacity = "100%";
+                document.getElementById("not-congratulation").style.fontSize = "50px";
+                //repeat button
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "red";
+            }
+    }
+
+    function chosey(){
+        document.getElementById("congratulation").style.opacity = "100%";
+        var randomList = list[Math.floor(Math.random() * list.length)];
+        document.getElementById("system-btn").innerHTML = randomList;
+            if(document.getElementById("system-btn").innerHTML == "مقص"){
+                document.getElementById("paper").disabled = true;
+                document.getElementById("scissors").disabled = true;
+                document.getElementById("rock").disabled = true;
+                document.getElementById("number-point").innerHTML = Number(document.getElementById("number-point").innerHTML) + 10;
+                document.getElementById("congratulation").style.opacity = "100%";
+                document.getElementById("congratulation").style.fontSize = "50px";
+                //repeat button
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "green";
+            }
+            else if(document.getElementById("system-btn").innerHTML == "حجرة"){
+                document.getElementById("nothing").style.opacity = "100%";
+                document.getElementById("nothing").style.fontSize = "20px";
+                //repeat button
+                
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "black";
+            }
+            else{
+                document.getElementById("paper").disabled = true;
+                document.getElementById("scissors").disabled = true;
+                document.getElementById("rock").disabled = true;
+                if(document.getElementById("number-point").innerHTML > 0){
+                    document.getElementById("number-point").innerHTML = Number(document.getElementById("number-point").innerHTML) - 10;
+                }
+                else{
+                    
+                }    
+                document.getElementById("not-congratulation").style.opacity = "100%";
+                document.getElementById("not-congratulation").style.fontSize = "50px";
+                //repeat button
+                document.getElementById("repeat").style.opacity = "100%";
+                document.getElementById("repeat").style.fontSize = "20px";
+                document.getElementById("repeat").style.backgroundColor = "red";
+            }
+    }
+
+</script>
+
+</body>
+</html>
